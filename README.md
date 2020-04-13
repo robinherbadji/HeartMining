@@ -1,7 +1,7 @@
 # HeartMining
 
 Projet de Fouille de Donnée réalisé par MM. Yassine Sameh et Robin Herbadji - ECG Heartbeat Categorization Dataset https://www.kaggle.com/shayanfazeli/heartbeat
-Contraintes établies par Dr G. Forestier
+( Contraintes établies par Dr G. Forestier )
 
 ## Context ECG Heartbeat Categorization Dataset
 ### Abstract
