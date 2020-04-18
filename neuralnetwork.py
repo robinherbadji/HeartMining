@@ -12,6 +12,7 @@ from sklearn.metrics import classification_report
 from sklearn.linear_model import Perceptron
 from sklearn.metrics import accuracy_score
 from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import StandardScaler
 
 # lecture des donne ́es
 df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
@@ -19,9 +20,19 @@ df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
 
 # cr ́eation des ensembles train / test
 
+
+
 X_train, y_train = df_train.iloc[:,0:-1], df_train.iloc[:,-1]
 X_test, y_test= df_test.iloc[:,0:-1], df_test.iloc[:,-1]
 
+#Normalisationd des données
+scaler = StandardScaler()
+scaler.fit(X_train)
+
+StandardScaler(copy=True, with_mean=True, with_std=True)
+
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
 
 def NN():
     # cr ́eation du classifieur
