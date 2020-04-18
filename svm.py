@@ -42,6 +42,7 @@ df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
 X_train, y_train = df_train.iloc[:,0:-1], df_train.iloc[:,-1]
 X_test, y_test = df_test.iloc[:,0:-1], df_test.iloc[:,-1]
 
+
 scaling = MinMaxScaler(feature_range = (-1,1)).fit(X_train)
 X_train = scaling.transform (X_train) 
 X_test = scaling.transform (X_test)
