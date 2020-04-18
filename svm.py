@@ -10,6 +10,7 @@ from sklearn . metrics import confusion_matrix
 from sklearn . metrics import classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import StratifiedShuffleSplit
+from sklearn.preprocessing import MinMaxScaler
 import time as t
 
 
@@ -36,11 +37,14 @@ start_time = t.time()
 df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
 df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
 
-
 #########################
 # Séparation du X et y
 X_train, y_train = df_train.iloc[:,0:-1], df_train.iloc[:,-1]
 X_test, y_test = df_test.iloc[:,0:-1], df_test.iloc[:,-1]
+
+scaling = MinMaxScaler(feature_range = (-1,1)).fit(X_train)
+X_train = scaling.transform (X_train) 
+X_test = scaling.transform (X_test)
 
 """
 print(df_train.shape)
@@ -60,7 +64,7 @@ X_train , X_trash , y_train , y_trash = train_test_split (X_train,
 
 
 # Création du classifieur
-svm = svm.SVC(kernel ='rbf', C =1E6 , gamma ='auto')
+svm = svm.SVC(kernel ='sigmoid', C =1E6 , gamma ='auto')
 svm.fit(X_train, y_train)
 predictions = svm.predict(X_test)
 
