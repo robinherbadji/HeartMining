@@ -64,7 +64,7 @@ X_train , X_trash , y_train , y_trash = train_test_split (X_train,
 
 
 # Création du classifieur
-svm = svm.SVC(kernel ='sigmoid', C =1E6 , gamma ='auto')
+svm = svm.SVC(kernel ='rbf', C =1E6 , gamma ='auto')
 svm.fit(X_train, y_train)
 predictions = svm.predict(X_test)
 
