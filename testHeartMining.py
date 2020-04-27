@@ -4,6 +4,7 @@
 Created on Mon Apr 27 11:32:45 2020
 
 @author: yassine.sameh
+@author: robin.herbadji
 """
 
 
@@ -36,7 +37,7 @@ import sys, os
 
 
 # Main definition - constants
-menu_actions  = {}  
+#menu_actions  = {}  
 menu_actions_knn  = {}
 menu_actions_bayes  = {}
   
@@ -82,6 +83,11 @@ def knn_menu():
     exec_menu_knn(choice)
 
     return
+
+#Fonctions relative au menu de KNN
+    
+def back_knn_menu():
+    menu_actions['knn_menu']()
 
 def exec_menu_knn(choice):
     ch = choice.lower()
@@ -129,10 +135,11 @@ def GraphKnn():
     k_accuracies= []
     error_rate = []
     
-    nAccuracies = eval(input("Saisir le nombre de précisions de voisins que vous voulez afficher: "))
-    if(nAccuracies<= 1):
-        print(colored("Attention vous avez choisi un nombre inférieur ou égal à 1", 'red'))
+    nAccuracies = 0
+    while(nAccuracies<= 1 or nAccuracies%2 == 0):
         nAccuracies = eval(input("Saisir le nombre de précisions de voisins que vous voulez afficher: "))
+        print(colored("Attention, vous devez chosir un nombre impair supérieur à 1", 'red'))
+        
             
     # lecture des donnees
     df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
@@ -164,13 +171,7 @@ def GraphKnn():
     
     #retour au menu KNN
     menu_actions_knn['knn_menu']()
-    
 
-
-#Fonctions relative au menu de KNN
-    
-def back_knn_menu():
-    menu_actions['knn_menu']()
 
 menu_actions_knn = {
     'knn_menu': knn_menu,
@@ -179,6 +180,7 @@ menu_actions_knn = {
     '9': back,
     '0': exit,
 }
+
 
 #============== BAYES MENU =======================
 def bayes_menu():
@@ -215,17 +217,17 @@ def Bayes():
     # lecture des donne ́es
     df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
     df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
-    # cr ́eation des ensembles train / test
+    # creation des ensembles train / test
     
     X_train, y_train = df_train.iloc[:,0:-1], df_train.iloc[:,-1]
     X_test, y_test= df_test.iloc[:,0:-1], df_test.iloc[:,-1]
     
-    #cre ́ation du classifieur
+    #creation du classifieur
     gnb = GaussianNB()
     gnb.fit(X_train , y_train)
     predictions = gnb.predict(X_test)
     
-    # e ́valuation du classifieur
+    # evaluation du classifieur
     print(confusion_matrix(predictions ,y_test))
     print(classification_report(predictions , y_test))
     
@@ -236,20 +238,20 @@ def BayesVarSmoothing():
     
     varSmoothing = eval(input("Choisir une variance ajoutée var_smoothing: "))
     
-    # lecture des donne ́es
+    # lecture des donnees
     df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
     df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
-    # cr ́eation des ensembles train / test
+    # creation des ensembles train / test
     
     X_train, y_train = df_train.iloc[:,0:-1], df_train.iloc[:,-1]
     X_test, y_test= df_test.iloc[:,0:-1], df_test.iloc[:,-1]
     
-    #cre ́ation du classifieur
+    #cretion du classifieur
     gnb = GaussianNB(var_smoothing=varSmoothing)
     gnb.fit(X_train , y_train)
     predictions = gnb.predict(X_test)
     
-    # e ́valuation du classifieur
+    # evaluation du classifieur
     print(confusion_matrix(predictions ,y_test))
     print(classification_report(predictions , y_test))
     
@@ -270,7 +272,7 @@ def GraphBayes():
     df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
     df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
     
-    # cr ́eation des ensembles train / test
+    # creation des ensembles train / test
     X_train, y_train = df_train.iloc[:,0:-1], df_train.iloc[:,-1]
     X_test, y_test= df_test.iloc[:,0:-1], df_test.iloc[:,-1]
     
@@ -348,6 +350,7 @@ def DecisionTree():
     dot_data = tree.export_graphviz(clf, out_file=None) 
     graph = graphviz.Source(dot_data)
     graph.render(tree_name)
+    os.remove(tree_name)
     print("Exporting OK -> " + tree_name + ".pdf")
     
     menu_actions['main_menu']()
@@ -397,14 +400,14 @@ def Neural():
     df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
     df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
     
-    # cr ́eation des ensembles train / test
+    # creation des ensembles train / test
     
     
     
     X_train, y_train = df_train.iloc[:,0:-1], df_train.iloc[:,-1]
     X_test, y_test= df_test.iloc[:,0:-1], df_test.iloc[:,-1]
     
-    #Normalisationd des données
+    #Normalisationd des donnees
     scaler = StandardScaler()
     scaler.fit(X_train)
     
@@ -415,13 +418,13 @@ def Neural():
     X_test = scaler.transform(X_test)
     
     
-    # cr ́eation du classifieur de reseau de neurones multicouches
+    # creation du classifieur de reseau de neurones multicouches
     perceptron = MLPClassifier(hidden_layer_sizes=(150,100,50), max_iter=300,
                                activation = 'relu',solver='adam',random_state=1)
     perceptron.fit(X_train , y_train)
     
     predictions = perceptron.predict(X_test)
-    # e ́valuation du classifieur
+    # evaluation du classifieur
     cnf_matrix = confusion_matrix(predictions , y_test)
     print(cnf_matrix)
     print(classification_report(predictions , y_test))
@@ -470,7 +473,7 @@ menu_actions = {
 }
 
 
-
+    
 # =======================
 #      MAIN PROGRAM
 # =======================
