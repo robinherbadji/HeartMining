@@ -35,7 +35,6 @@ from sklearn.preprocessing import StandardScaler
 import sys, os
 
 
-
 # Main definition - constants
 #menu_actions  = {}  
 menu_actions_knn  = {}
@@ -50,7 +49,8 @@ menu_actions_bayes  = {}
 def main_menu():
     
     print("===========================================")
-    print("Projet fouille de données,\n")
+    print("Projet fouille de données")
+    print("===========================================\n")
     print("Choisir une méthode de classification :\n")
     print("1. Plus proches voisins")
     print("2. Bayésienne")
@@ -138,9 +138,10 @@ def GraphKnn():
     nAccuracies = 0
     while(nAccuracies<= 1 or nAccuracies%2 == 0):
         nAccuracies = eval(input("Saisir le nombre de précisions de voisins que vous voulez afficher: "))
-        print(colored("Attention, vous devez chosir un nombre impair supérieur à 1", 'red'))
+        if (nAccuracies<= 1 or nAccuracies%2 == 0):
+            print(colored("Attention, vous devez chosir un nombre impair supérieur à 1", 'red'))
         
-            
+    print("Création du grapique...")        
     # lecture des donnees
     df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
     df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
@@ -163,7 +164,7 @@ def GraphKnn():
     #representation graphique 
     plt.plot(range(1,nAccuracies,2), k_accuracies, color='green', linestyle='solid', marker='o',
          markerfacecolor='green', markersize=5)
-    plt.title('Precision des prédicitions en fonction du nombre de voisions')
+    plt.title('Precision des prédicitions en fonction du nombre de voisins')
     plt.xlabel('Valeur de k voisins')
     plt.ylabel('Precision')
     
@@ -213,8 +214,10 @@ def exec_menu_bayes(choice):
 #------------ fonctions de classification bayésien -----------------
 
 def Bayes():
+    print("Méthode Bayes")
+    print("Chargement...")
     
-    # lecture des donne ́es
+    # lecture des donnees
     df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
     df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
     # creation des ensembles train / test
@@ -235,9 +238,10 @@ def Bayes():
     menu_actions_bayes['bayes_menu']()
     
 def BayesVarSmoothing():
+    print("Méthode BayesVarSmoothing")
     
     varSmoothing = eval(input("Choisir une variance ajoutée var_smoothing: "))
-    
+    print("Chargement...")
     # lecture des donnees
     df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
     df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
@@ -259,6 +263,7 @@ def BayesVarSmoothing():
     menu_actions_bayes['bayes_menu']()
 
 def GraphBayes():
+    print("GraphBayes")
     
     k_accuracies= []
     error_rate = []
@@ -268,6 +273,7 @@ def GraphBayes():
         print(colored("Attention vous avez choisi un nombre inférieur ou égal à 1", 'red'))
         nAccuracies = eval(input("Saisir le nombre de variances que vous voulez afficher pour la précision: "))
             
+    print("Chargement...")
     # lecture des donnees
     df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
     df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
@@ -315,6 +321,9 @@ menu_actions_bayes = {
 #=============== Arbre de décision ====================
 
 def DecisionTree():
+    print("Arbre de Decision")
+    print("Chargement...")
+    
     # Récupération du train et du test
     df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
     df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
@@ -358,6 +367,8 @@ def DecisionTree():
 
 #================ SVM =================================
 def SVM():
+    print("Méthode SVM")
+    print("Chargement...")
     
     # Récupération du train et du test
     df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
@@ -396,14 +407,14 @@ def SVM():
 
 #=============== Réseau de Neurones ===================
 def Neural():
-    # lecture des donne ́es
+    print("Méthode Réseau de Neurones")
+    print("Chargement...")
+    
+    # lecture des donnees
     df_train = pd.read_csv('heartbeat/mitbih_train.csv', header=0)
     df_test = pd.read_csv('heartbeat/mitbih_test.csv', header=0)
     
     # creation des ensembles train / test
-    
-    
-    
     X_train, y_train = df_train.iloc[:,0:-1], df_train.iloc[:,-1]
     X_test, y_test= df_test.iloc[:,0:-1], df_test.iloc[:,-1]
     
