@@ -4,10 +4,10 @@ Projet de Fouille de Donnée réalisé par MM. Yassine Sameh et Robin Herbadji -
 ( Contraintes établies par Dr G. Forestier )
 
 ## Utilisation
-Recupérez le script Python HeartMining.py
-Recupérez le dataset sur le site kaggle : https://www.kaggle.com/shayanfazeli/heartbeat
-Vérifiez la présence des 2 fichiers mitbih_test.csv et mitbih_train.csv dans un dossier heartbeat
-Vous pouvez maintenant lancer le script
+- Recupérez le script Python HeartMining.py
+- Recupérez le dataset sur le site kaggle : https://www.kaggle.com/shayanfazeli/heartbeat
+- Vérifiez la présence des 2 fichiers mitbih_test.csv et mitbih_train.csv dans un dossier heartbeat
+- Vous pouvez maintenant lancer le script
 
 ## Context ECG Heartbeat Categorization Dataset
 ### Abstract
