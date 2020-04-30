@@ -3,6 +3,12 @@
 Projet de Fouille de Donnée réalisé par MM. Yassine Sameh et Robin Herbadji - ECG Heartbeat Categorization Dataset https://www.kaggle.com/shayanfazeli/heartbeat
 ( Contraintes établies par Dr G. Forestier )
 
+## Utilisation
+Recupérez le script Python HeartMining.py
+Recupérez le dataset sur le site kaggle : https://www.kaggle.com/shayanfazeli/heartbeat
+Vérifiez la présence des 2 fichiers mitbih_test.csv et mitbih_train.csv dans un dossier heartbeat
+Vous pouvez maintenant lancer le script
+
 ## Context ECG Heartbeat Categorization Dataset
 ### Abstract
 This dataset is composed of two collections of heartbeat signals derived from two famous datasets in heartbeat classification, the MIT-BIH Arrhythmia Dataset and The PTB Diagnostic ECG Database. The number of samples in both collections is large enough for training a deep neural network.
