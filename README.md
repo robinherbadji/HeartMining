@@ -3,11 +3,18 @@
 Projet de Fouille de Donnée réalisé par MM. Yassine Sameh et Robin Herbadji - ECG Heartbeat Categorization Dataset https://www.kaggle.com/shayanfazeli/heartbeat
 ( Contraintes établies par Dr G. Forestier )
 
-## Utilisation
+## Installation
 - Recupérez le script Python HeartMining.py
 - Recupérez le dataset sur le site kaggle : https://www.kaggle.com/shayanfazeli/heartbeat
-- Vérifiez la présence des 2 fichiers mitbih_test.csv et mitbih_train.csv dans un dossier heartbeat
-- Vous pouvez maintenant lancer le script
+- Vérifiez la présence des 2 fichiers mitbih_test.csv et mitbih_train.csv dans le dossier heartbeat
+
+## Utilisation
+A l'exécution du script HeartMining.py, vous aurez le choix entre différentes méthodes de classification du dataset:
+- Plus proches voisins (KNN)
+- Bayesienne
+- Arbre de décision
+- Support Vector Machine (SVM)
+- Réseau de Neuronnes
 
 ## Context ECG Heartbeat Categorization Dataset
 ### Abstract
