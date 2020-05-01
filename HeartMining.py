@@ -418,7 +418,7 @@ def SVM():
     # On ne selectionne qu'une partie du train
     X_train , X_trash , y_train , y_trash = train_test_split (X_train, 
                                                               y_train,
-                                                              train_size = 0.01,
+                                                              train_size = 0.3,
                                                               stratify = y_train)
     
     # Création du classifieur
